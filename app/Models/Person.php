@@ -7,14 +7,7 @@ class Person
     private string $name;
     private string $surname;
     private string $code;
-    private string $description;
-
-    public function __construct(string $name, string $surname, string $code)
-    {
-        $this->name = $name;
-        $this->surname = $surname;
-        $this->code = $code;
-    }
+    private string $description = '';
 
     public function name(): string
     {
@@ -31,13 +24,28 @@ class Person
         return $this->code;
     }
 
-    public function addDescription(string $description): void
+    public function description(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    public function description(): string
+    public function setName(string $name): void
     {
-        return $this->description;
+        $this->name = $name;
+    }
+
+    public function setSurname(string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
     }
 }

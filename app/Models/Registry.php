@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
+use DB\QueryBuilder;
+
 class Registry
 {
-    private PersonCollection $persons;
+    private QueryBuilder $db;
 
-    public function __construct(PersonCollection $persons)
+    public function __construct(QueryBuilder $db)
     {
-        $this->persons = $persons;
-    }
-
-    public function getPersons(): PersonCollection
-    {
-        return $this->persons;
+        $this->db = $db;
     }
 }
