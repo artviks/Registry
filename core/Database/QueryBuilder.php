@@ -1,6 +1,6 @@
 <?php
 
-namespace DB;
+namespace Core\Database;
 
 use App\Models\{Person, PersonCollection, Storage};
 use PDO;
@@ -8,12 +8,11 @@ use PDO;
 class QueryBuilder implements Storage
 {
     private PDO $pdo;
-    private string $table;
+    private string $table = 'persons';
 
-    public function __construct(PDO $pdo, string $table)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
-        $this->table = $table;
     }
 
     public function selectAll(): PersonCollection

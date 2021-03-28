@@ -1,12 +1,9 @@
 <?php
 
 require "../vendor/autoload.php";
+require "../core/bootstrap.php";
 
-use App\Models\Registry;
-use DB\{QueryBuilder, Connection};
+use Core\FastRouter;
 
-$config = require "../config.php";
 
-$registry = new Registry(new QueryBuilder(Connection::make($config['database']), 'persons'));
-
-var_dump($registry->selectAll());
+FastRouter::load(require '../app/routes.php');
