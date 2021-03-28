@@ -9,4 +9,5 @@ return FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r)
 
     $r->addRoute('GET', '/data', [RegistryController::class, 'data']);
     $r->addRoute('GET', '/search', [RegistryController::class, 'search']);
+    $r->addRoute('POST', '/data', [RegistryController::class, 'add']);
 });

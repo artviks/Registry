@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Person;
 use App\Models\Registry;
 use Core\App;
 
@@ -21,5 +22,13 @@ class RegistryController
         )->findPersonBy($_GET['condition']);
 
         require __DIR__ . './../Views/index.view.php';
+    }
+
+    public function add(): void
+    {
+        (new Registry(App::get('database')))
+            ->add(new Person($_POST['name'], $_POST['surname'], $_POST['code']));
+
+        header('Location:/data');
     }
 }

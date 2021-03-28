@@ -17,5 +17,31 @@
         <td><?= $person->description() ?></td>
     </tr>
 <?php endforeach; ?>
+</table>
+
+<br>
+<h4>Here you can add to registry:</h4>
+<form method="POST" action="/data">
+    <label for="name">Name:</label>
+    <br>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="surname">Surname:</label>
+    <br>
+    <input type="text" id="surname" name="surname" required>
+    <br>
+    <label for="code">Personal Code:</label>
+    <br>
+    <input type="text" id="code" name="code"
+           pattern="(?=.*[0-10])" title="Use correct form"
+           required>
+    <br>
+    <label for="description">Description:</label>
+    <br>
+    <input type="text" id="description" name="description">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
 
 <?php require 'Partials/footer.php' ?>

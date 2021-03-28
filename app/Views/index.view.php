@@ -26,5 +26,6 @@
             <td><?= $person->description() ?></td>
         </tr>
     <?php endforeach;} ?>
+    </table>
 
 <?php require 'Partials/footer.php' ?>
