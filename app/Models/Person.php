@@ -4,10 +4,19 @@ namespace App\Models;
 
 class Person
 {
+    private int $id;
     private string $name;
     private string $surname;
     private string $code;
-    private string $description = '';
+    private string $description;
+
+    public function __construct(string $name, string $surname, string $code, string $description = '')
+    {
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->code = $code;
+        $this->description = $description;
+    }
 
     public function name(): string
     {
@@ -29,23 +38,18 @@ class Person
         return $this->description;
     }
 
+    public function id(): string
+    {
+        return $this->id;
+    }
+
     public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    public function setName(string $name): void
+    public function setId(int $id): void
     {
-        $this->name = $name;
-    }
-
-    public function setSurname(string $surname): void
-    {
-        $this->surname = $surname;
-    }
-
-    public function setCode(string $code): void
-    {
-        $this->code = $code;
+        $this->id = $id;
     }
 }

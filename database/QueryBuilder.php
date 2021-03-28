@@ -2,29 +2,33 @@
 
 namespace DB;
 
-use App\Models\Person;
+use App\Models\{Person, PersonCollection, Storage};
 use PDO;
 
-class QueryBuilder
+class QueryBuilder implements Storage
 {
     private PDO $pdo;
+    private string $table;
 
-    public function __construct(PDO $pdo)
+    public function __construct(PDO $pdo, string $table)
     {
         $this->pdo = $pdo;
+        $this->table = $table;
     }
 
-    public function selectAll(string $table, string $intoClass): array
+    public function selectAll(): PersonCollection
     {
-        $statement = $this->pdo->query("select * from $table");
+        $sql = "select * from $this->table";
 
-        return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
+        return $this->getPersonCollection($sql);
     }
 
-    public function addPerson(Person $person): void
+    public function add(Person $person): void
     {
         $sql = sprintf(
-            "insert into persons values ('%s', '%s', '%s', '%s')",
+            "insert into $this->table (
+                   name, surname, code, description)
+                    values ('%s', '%s', '%s', '%s')",
             $person->name(),
             $person->surname(),
             $person->code(),
@@ -34,14 +38,34 @@ class QueryBuilder
         $this->pdo->exec($sql);
     }
 
-    public function findByCode(string $table, string $code): Person
+    public function findPersonBy(string $condition): PersonCollection
     {
-        $statement = $this->pdo->query("select * from $table where code = '$code'");
+        $sql = "select * from $this->table where '$condition' in (name, surname, code)";
 
-        return $statement->fetchObject(Person::class);
+        return $this->getPersonCollection($sql);
     }
 
+    public function updateDescription(Person $person): void
+    {
+        $sql = "update $this->table set 
+                 description = '{$person->description()}' where id = '{$person->id()}'";
 
+        $this->pdo->exec($sql);
+    }
 
+    private function getPersonCollection(string $sql): PersonCollection
+    {
+        $statement = $this->pdo->query($sql);
+        $persons = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+        $col = new PersonCollection();
+        foreach ($persons as $person)
+        {
+            $p = new Person($person['name'], $person['surname'], $person['code'], $person['description']);
+            $p->setId($person['id']);
+            $col->add($p);
+        }
+
+        return $col;
+    }
 }

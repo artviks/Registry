@@ -11,13 +11,6 @@ class PersonCollection
         $this->collection[] = $person;
     }
 
-    public function addMany(array $persons): void
-    {
-        foreach ($persons as $person) {
-            $this->add($person);
-        }
-    }
-
     public function collection(): array
     {
         return $this->collection;

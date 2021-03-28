@@ -2,10 +2,11 @@
 
 require "../vendor/autoload.php";
 
+use App\Models\Registry;
 use DB\{QueryBuilder, Connection};
-use App\Models\Person;
 
 $config = require "../config.php";
 
-$db = new QueryBuilder(Connection::make($config['database']));
-var_dump($db->selectAll('persons', Person::class));
+$registry = new Registry(new QueryBuilder(Connection::make($config['database']), 'persons'));
+
+var_dump($registry->selectAll());
