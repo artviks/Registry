@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Repositories;
 
-interface Storage
+use App\Models\Person;
+use App\Models\PersonCollection;
+
+interface PersonRepository
 {
     public function selectAll(): PersonCollection;
 

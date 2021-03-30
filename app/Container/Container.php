@@ -1,12 +1,12 @@
 <?php
 
-namespace Core;
+namespace App\Container;
 
 use http\Exception\InvalidArgumentException;
 
-class App
+class Container
 {
-    protected static array $registry = [];
+   private static $registry = [];
 
     public static function bind(string $key, $value): void
     {

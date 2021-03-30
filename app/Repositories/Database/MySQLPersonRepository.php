@@ -1,18 +1,20 @@
 <?php
 
-namespace Core\Database;
+namespace App\Repositories\Database;
 
-use App\Models\{Person, PersonCollection, Storage};
+use App\Repositories\PersonRepository;
+use App\Models\{Person, PersonCollection};
 use PDO;
 
-class QueryBuilder implements Storage
+class MySQLPersonRepository implements PersonRepository
 {
     private PDO $pdo;
-    private string $table = 'persons';
+    private string $table;
 
-    public function __construct(PDO $pdo)
+    public function __construct(PDO $pdo, string $table)
     {
         $this->pdo = $pdo;
+        $this->table = $table;
     }
 
     public function selectAll(): PersonCollection

@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Services;
 
-class Registry
+use App\Models\Person;
+use App\Models\PersonCollection;
+use App\Repositories\PersonRepository;
+
+class StorePersonService
 {
-    private Storage $storage;
+    private PersonRepository $storage;
 
-    public function __construct(Storage $storage)
+    public function __construct(PersonRepository $storage)
     {
         $this->storage = $storage;
     }

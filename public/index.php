@@ -1,9 +1,9 @@
 <?php
 
 require "../vendor/autoload.php";
-require "../core/bootstrap.php";
+require "../app/Container/bootstrap.php";
 
-use Core\FastRouter;
+use App\FastRouter;
 
 
 FastRouter::load(require '../app/routes.php');

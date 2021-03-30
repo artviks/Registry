@@ -6,6 +6,6 @@ class PagesController
 {
     public function home(): void
     {
-        require __DIR__ . './../Views/index.view.php';
+        require __DIR__ . './../../public/Views/index.view.php';
     }
 }

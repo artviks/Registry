@@ -23,7 +23,11 @@
             <td><?= $person->name() ?></td>
             <td><?= $person->surname() ?></td>
             <td><?= $person->code() ?></td>
-            <td><?= $person->description() ?></td>
+            <td><?= $person->description() ?>
+                <form method="POST" action="/addDescription">
+                    <input type="text" name="condition">
+                </form>
+            </td>
         </tr>
     <?php endforeach;} ?>
     </table>
