@@ -3,10 +3,11 @@
 namespace App;
 
 use FastRoute;
+use League\Container\Container;
 
 class FastRouter
 {
-    public static function load($dispatcher): void
+    public static function load(FastRoute\Dispatcher $dispatcher, Container $container): void
     {
         $routeInfo = $dispatcher->dispatch(
             self::requestMethod(),
@@ -25,7 +26,9 @@ class FastRouter
             case FastRoute\Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 [$class, $method] = $handler;
-                (new $class)->$method();
+
+                $container->get($class)->$method();
+
                 break;
         }
     }

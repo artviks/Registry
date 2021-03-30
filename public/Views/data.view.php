@@ -32,9 +32,9 @@
     <br>
     <label for="code">Personal Code:</label>
     <br>
-    <input type="text" id="code" name="code"
-           pattern="(?=.*[0-10])" title="Use correct form"
-           required>
+    <input type="text" id="code" name="code" required>
+<!--           pattern="" title="Use correct form"-->
+
     <br>
     <label for="description">Description:</label>
     <br>

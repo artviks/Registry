@@ -9,12 +9,11 @@ use PDO;
 class MySQLPersonRepository implements PersonRepository
 {
     private PDO $pdo;
-    private string $table;
+    private string $table = 'persons';
 
-    public function __construct(PDO $pdo, string $table)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
-        $this->table = $table;
     }
 
     public function selectAll(): PersonCollection
@@ -46,10 +45,10 @@ class MySQLPersonRepository implements PersonRepository
         return $this->getPersonCollection($sql);
     }
 
-    public function updateDescription(Person $person): void
+    public function updateDescription(string $description, int $id): void
     {
         $sql = "update $this->table set 
-                 description = '{$person->description()}' where id = '{$person->id()}'";
+                 description = '$description' where id = $id";
 
         $this->pdo->exec($sql);
     }

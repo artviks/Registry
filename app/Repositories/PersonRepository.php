@@ -13,5 +13,5 @@ interface PersonRepository
 
     public function findPersonBy(string $condition): PersonCollection;
 
-    public function updateDescription(Person $person): void;
+    public function updateDescription(string $description, int $id): void;
 }

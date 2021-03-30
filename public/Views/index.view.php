@@ -24,8 +24,8 @@
             <td><?= $person->surname() ?></td>
             <td><?= $person->code() ?></td>
             <td><?= $person->description() ?>
-                <form method="POST" action="/addDescription">
-                    <input type="text" name="condition">
+                <form method="POST" action="/description">
+                    <input type="text" name=<?= $person->id() ?>>
                 </form>
             </td>
         </tr>

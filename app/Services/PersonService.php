@@ -6,7 +6,7 @@ use App\Models\Person;
 use App\Models\PersonCollection;
 use App\Repositories\PersonRepository;
 
-class StorePersonService
+class PersonService
 {
     private PersonRepository $storage;
 
@@ -30,9 +30,9 @@ class StorePersonService
         return $this->storage->findPersonBy($condition);
     }
 
-    public function updateDescription(Person $person): void
+    public function updateDescription(string $description, int $id): void
     {
-        $this->storage->updateDescription($person);
+        $this->storage->updateDescription($description, $id);
     }
 
 }
